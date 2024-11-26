@@ -1,0 +1,25 @@
+				MOV		R0, #4 ; initialize R0 to Fibonacci number to compute
+				MOV		R1, #1 ; initialize R1 to 1
+				
+				CMP		R0, #0 ; check if n == 0
+				BEQ		BASE_CASE_0 ; if n == 0, jump to base case 0
+				
+FACTORIAL_LOOP
+				MOV		R2, #0 ; reset temporary register R2
+				MOV		R3, R1 ; store current result in R3
+				MOV		R4, R0 ; copy R0 to R4
+				
+MULTIPLICATION_LOOP
+				ADD		R2, R2, R3 ; R2 = R2 + R3
+				SUBS		R4, R4, #1 ; decrement R4
+				BNE		MULTIPLICATION_LOOP ; repeat until R4 == 0 until R4 == 0
+				
+				MOV		R1, R2 ; store the result after inner loop in R1
+				SUBS		R0, R0, #1 ; decrement R0
+				BNE		FACTORIAL_LOOP ; repeat until R0 == 0
+				
+				END		; exit program
+				
+BASE_CASE_0
+				MOV		R1, #1 ; 0! = 1
+				END		; exit program
